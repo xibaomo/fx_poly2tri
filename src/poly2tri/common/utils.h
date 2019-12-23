@@ -1,4 +1,4 @@
-/* 
+/*
  * Poly2Tri Copyright (c) 2009-2010, Poly2Tri Contributors
  * http://code.google.com/p/poly2tri/
  *
@@ -28,7 +28,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
+
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -37,7 +37,23 @@
 
 #include <exception>
 #include <math.h>
+#include <ctime>
+#include <chrono>
 
+class MsTimer {
+private:
+    std::chrono::high_resolution_clock::time_point m_start;
+public:
+    MsTimer() { restart(); }
+    void restart() {
+        m_start = std::chrono::high_resolution_clock::now();
+    }
+
+    double elapsed() {
+        std::chrono::duration<double, std::milli> dt = std::chrono::high_resolution_clock::now() - m_start;
+        return dt.count();
+    }
+};
 namespace p2t {
 
 const double PI_3div4 = 3 * M_PI / 4;

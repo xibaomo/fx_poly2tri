@@ -37,6 +37,7 @@
 #include <cstddef>
 #include <assert.h>
 #include <cmath>
+#include <complex>
 
 namespace p2t {
 
@@ -45,6 +46,8 @@ struct Edge;
 struct Point {
 
   double x, y;
+
+  std::complex<double> dir_vec;
 
   /// Default constructor does nothing (for performance).
   Point()
